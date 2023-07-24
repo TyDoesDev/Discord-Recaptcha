@@ -13,15 +13,15 @@ module.exports = {
                 .setTitle('🏓 Ping - Pong')
                 .setColor(client.colors.Base)
                 .setThumbnail(client.logo)
-                .setDescription('Is it bad?')
+                .setDescription(`Tell me honestly ${interaction.user.globalName}, is it bad?`)
                 .addFields(
                     {
-                        name: 'Websocket',
+                        name: 'API Latency',
                         value: `\`${Math.round(client.ws.ping)}ms\``,
                         inline: true
                     },
                     {
-                        name: 'Latency',
+                        name: 'Response Time',
                         value: `\`${Date.now() - interaction.createdTimestamp}ms\``,
                         inline: true
                     }

@@ -1,4 +1,5 @@
 module.exports = {
+    Admins: ['510065483693817867', '1132812361959481354'],
     InteractionTypes: {
         SUB_COMMAND: 1,
         SUB_COMMAND_GROUP: 2,

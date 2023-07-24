@@ -10,9 +10,9 @@ module.exports = {
 
         if (command.userPerms.includes('BOT_ADMIN') && !client.perms.Admins.includes(interaction.user.id)) return interaction.reply({
             embeds: [
-                new client.DiscordGateway.MessageEmbed()
+                new client.DiscordGateway.EmbedBuilder()
                 .setTitle('ERROR: Invalid Permissions')
-                .setColor('RED')
+                .setColor(client.colors.Error)
                 .setThumbnail(client.logo)
                 .setDescription('Whoops, you do not have permission to execute this command')
                 .addFields({
@@ -31,9 +31,9 @@ module.exports = {
 
         if (command.basePerms && !interaction.member.permissions.has(command.basePerms)) return interaction.reply({
             embeds: [
-                new client.DiscordGateway.MessageEmbed()
+                new client.DiscordGateway.EmbedBuilder()
                 .setTitle('ERROR: Invalid Permissions')
-                .setColor('RED')
+                .setColor(client.colors.Error)
                 .setThumbnail(client.logo)
                 .setDescription('Whoops, you do not have permission to execute this command')
                 .addFields({
@@ -70,9 +70,9 @@ module.exports = {
 
             await interaction.reply({
                 embeds: [
-                    new client.DiscordGateway.MessageEmbed()
+                    new client.DiscordGateway.EmbedBuilder()
                     .setTitle('FATAL: Internal Error')
-                    .setColor('RED')
+                    .setColor(client.colors.Error)
                     .setThumbnail(client.logo)
                     .setDescription('Whoops, something went extremely wrong')
                     .addFields({

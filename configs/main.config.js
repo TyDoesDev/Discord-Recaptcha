@@ -15,7 +15,6 @@ module.exports = {
     ClientLogo: process.env.CLIENT_LOGO,
     Recaptcha: process.env.RECAPTCHA_LOGO,
     CmdTimeout: process.env.CMD_TIMEOUT,
-    LogChannel: process.env.LOG_CHANNEL,
     Mongoose: process.env.MONGO,
     EmbedColors: {
         Base: '#005DFF',

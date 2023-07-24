@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const { Schema, model } = require('mongoose');
 
 module.exports = model('guilds', new Schema({
     guild: {
@@ -13,7 +13,11 @@ module.exports = model('guilds', new Schema({
         type: String,
         required: true
     },
-    verified_role: {
+    role: {
+        type: String,
+        required: true
+    },
+    logs: {
         type: String,
         required: true
     }
