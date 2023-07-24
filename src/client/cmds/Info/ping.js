@@ -2,8 +2,8 @@ module.exports = {
     name: 'ping',
     category: 'Info',
     description: 'View the bots latency and response time',
-    userPerms: ['none'],
-    basePerms: ['none'],
+    userPerms: [],
+    basePerms: [],
 
     run: async(client, interaction) => {
 
