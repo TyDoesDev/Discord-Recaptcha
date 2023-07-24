@@ -5,20 +5,21 @@ module.exports = {
     userPerms: [],
     basePerms: [],
 
-    run: async(client, interaction) => {
-
+    run: async (client, interaction) => {
         return interaction.reply({
             embeds: [
                 new client.DiscordGateway.EmbedBuilder()
-                .setTitle('My invite link')
-                .setColor(client.colors.Base)
-                .setThumbnail(client.logo)
-                .setDescription(`Hey there ${interaction.user.globalName}, you can invite me to your guild [here](${client.config.Invite})`)
-                .setTimestamp()
-                .setFooter({
-                    text: client.footer,
-                    iconURL: client.logo
-                })
+                    .setTitle('My invite link')
+                    .setColor(client.colors.Base)
+                    .setThumbnail(client.logo)
+                    .setDescription(
+                        `Hey there ${interaction.user.globalName}, you can invite me to your guild [here](${client.config.Invite})`
+                    )
+                    .setTimestamp()
+                    .setFooter({
+                        text: client.footer,
+                        iconURL: client.logo
+                    })
             ]
         })
     }

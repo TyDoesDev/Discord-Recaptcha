@@ -1,6 +1,9 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model } = require('mongoose')
 
-module.exports = model('codes', new Schema({
-    link: String,
-    answers: [String]
-}))
+module.exports = model(
+    'codes',
+    new Schema({
+        link: String,
+        answers: [String]
+    })
+)
