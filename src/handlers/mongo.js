@@ -1,5 +1,5 @@
 const mongo = require('mongoose');
-const { logger } = require('@plugins/logger/index');
+const { log } = require('@plugins/logger/index');
 
 module.exports.MongoClient = async ({ connectionURL }) => {
     
@@ -20,7 +20,7 @@ module.exports.MongoClient = async ({ connectionURL }) => {
     
     .then(() => {
 
-        logger('Mongoose connection established successfully', {
+        log('Mongoose connection established successfully', {
             header: 'MONGO_CONNECTION_SUCCESS',
             type: 'ready'
         });
@@ -28,7 +28,7 @@ module.exports.MongoClient = async ({ connectionURL }) => {
     
     .catch(e => {
         
-        logger(`Mongoose connection failed: ${e.stack}`, {
+        log(`Mongoose connection failed: ${e.stack}`, {
             header: 'MONGO_CONNECTION_FAILURE',
             type: 'error'
         });

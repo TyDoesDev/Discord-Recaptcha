@@ -16,5 +16,11 @@ module.exports = {
     Recaptcha: process.env.RECAPTCHA_LOGO,
     CmdTimeout: process.env.CMD_TIMEOUT,
     LogChannel: process.env.LOG_CHANNEL,
-    Mongoose: process.env.MONGO
+    Mongoose: process.env.MONGO,
+    EmbedColors: {
+        Base: '#005DFF',
+        Error: '#FF0000',
+        Success: '#2BBF00',
+        Warning: '#D4F30E'
+    }
 }

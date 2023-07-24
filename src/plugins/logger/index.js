@@ -75,7 +75,7 @@ const COLORS = {
  * @default COLORS The logger colors (for text and header)
  *
  */
-const logger = (
+const log = (
     message = '',
     { header: initialHeader = '', delimitor = '=', type = TYPES.info } = {
         header: '',

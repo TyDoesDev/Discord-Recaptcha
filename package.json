@@ -25,7 +25,7 @@
     },
   
     "dependencies": {
-      "chalk": "^4.1.2",
+      "chalk": "4.1.2",
       "discord.js": "^14.11.0",
       "dotenv": "^16.0.3",
       "timers": "^0.1.1",
@@ -58,7 +58,7 @@
 
     "_moduleAliases": {
       "@root": "./src",
-      "@configs": "./src/configs",
+      "@configs": "./configs",
       "@handlers": "./src/handlers",
       "@models": "./src/models",
       "@plugins": "./src/plugins"

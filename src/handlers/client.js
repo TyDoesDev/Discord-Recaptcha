@@ -2,10 +2,11 @@ require('module-alias/register');
 require('dotenv').config();
 
 const Discord = require('discord.js');
-const { Client, Collection, Intents } = require('discord.js');
+const { Client, Collection, GatewayIntentBits } = require('discord.js');
 const { InteractionTypes } = require('@configs/perms.config');
 
-const { logger } = require('@plugins/logger/index');
+const { log } = require('@plugins/logger/index');
+const events = require('@handlers/listeners');
 const config = require('@configs/main.config');
 const utils = require('@handlers/presence');
 
@@ -13,18 +14,18 @@ const utils = require('@handlers/presence');
  * INITIALIZE THE DISCORD.JS CLIENT
  */
 const client = new Client({
-    Intents: [
-        Intents.FLAGS.GUILDS,
-        Intents.FLAGS.GUILD_BANS,
-        Intents.FLAGS.GUILD_INVITES,
-        Intents.FLAGS.GUILD_MEMBERS,
-        Intents.FLAGS.GUILD_MESSAGES,
-        Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
-        Intents.FLAGS.GUILD_MESSAGE_TYPING,
-        Intents.FLAGS.GUILD_PRESENCES,
-        Intents.FLAGS.DIRECT_MESSAGES,
-        Intents.FLAGS.DIRECT_MESSAGE_REACTIONS,
-        Intents.FLAGS.DIRECT_MESSAGE_TYPING
+    intents: [
+        GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildModeration,
+        GatewayIntentBits.GuildInvites,
+        GatewayIntentBits.GuildMembers,
+        GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.GuildMessageReactions,
+        GatewayIntentBits.GuildMessageTyping,
+        GatewayIntentBits.GuildPresences,
+        GatewayIntentBits.DirectMessages,
+        GatewayIntentBits.DirectMessageReactions,
+        GatewayIntentBits.DirectMessageTyping
     ],
     allowedMentions: {
         repliedUser: true,
@@ -39,16 +40,30 @@ const client = new Client({
 module.exports = client;
 
 /**
+ * DEFINE CLIENT COLLECTIONS
+ */
+client.slash = new Collection();
+client.category = new Collection();
+
+/**
+ * LOAD CLIENT EVENTS AND COMMANDS
+ */
+events.loadClientEvents(client);
+events.loadSlashCommands(client);
+
+
+/**
  * DEFINE CUSTOM CLIENT CALLS
  */
 client.InteractionTypes = InteractionTypes;
 client.DiscordGateway = Discord;
-client.logger = logger;
+client.logger = log;
 client.config = config;
 client.utils = utils;
 client.logo = config.ClientLogo;
 client.capt_logo = config.Recaptcha;
 client.footer = config.Footer;
+client.colors = config.EmbedColors;
 
 /**
  * LOAD EVENTS HERE
@@ -60,14 +75,14 @@ client.footer = config.Footer;
  * @private unhandledRejection
  */
 process.on('uncaughtException', err => {
-    logger(`Uncaught Exception: ${err}`, {
+    log(`Uncaught Exception: ${err}`, {
         header: 'FATAL ERROR',
         type: 'error'
     })
 })
 
 process.on('unhandledRejection', (reason, promise) => {
-    logger(`Unhandled Rejection: ${reason.stack}`, {
+    log(`Unhandled Rejection: ${reason.stack}`, {
         header: 'FATAL ERROR',
         type: 'error'
     })
